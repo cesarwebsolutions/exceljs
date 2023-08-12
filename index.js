@@ -1,10 +1,5 @@
 const ExcelJS = require('exceljs');
 const workbook = new ExcelJS.Workbook();
-// workbook.creator = 'Ng Wai Foong';
-// workbook.lastModifiedBy = 'Bot';
-// workbook.created = new Date(2021, 8, 30);
-// workbook.modified = new Date();
-// workbook.lastPrinted = new Date(2021, 7, 27);
 
 
 
