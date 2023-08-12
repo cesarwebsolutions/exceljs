@@ -29,5 +29,6 @@ worksheet.addRows(array)
 workbook.xlsx.writeFile('teste.xlsx').then(() => {
     console.log('Deu bom')
 })
+teste
 
 // add linha
