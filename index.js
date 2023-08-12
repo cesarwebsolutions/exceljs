@@ -9,53 +9,27 @@ const workbook = new ExcelJS.Workbook();
 
 
 const array = [
-    { id: 1, name: 'John Doe', age: 35 },
-    { id: 1, name: 'John Doe', age: 35 },
-    { id: 1, name: 'John Doe', age: 35 },
-    { id: 1, name: 'John Doe', age: 35 },
+    {id: 1, name: 'John Doe', age: 35},
+    {id: 1, name: 'John Doe', age: 35},
+    {id: 1, name: 'John Doe', age: 35},
+    {id: 1, name: 'John Doe', age: 35},
 ]
 
-
 const worksheet = workbook.addWorksheet('produtos');
-worksheet.addTable({
-    name: 'MyTable',
-    ref: 'A1',
-    headerRow: true,
-    totalsRow: true,
-    style: {
-        theme: 'TableStyleDark3',
-        showRowStripes: true,
-    },
-    columns: [
-        { header: 'Id', key: 'id', width: 10 },
-        { header: 'Name', key: 'name', width: 32 },
-        {
-            header: 'Age', key: 'age'
-        }
-    ],
-    row: []
-});
-const table = worksheet.getTable('MyTable');
-const column = table.getColumn(1);
-column.name = 'Code';
-column.filterButton = true;
-column.style = { font: { bold: true, name: 'Comic Sans MS' } };
-column.totalsRowLabel = 'Totals';
-column.totalsRowFunction = 'custom';
-column.totalsRowFormula = 'ROW()';
-column.totalsRowResult = 10;
-column.totalsRowLabel = 'Totals';
+worksheet.columns = [
+    { header: 'Id', key: 'id', width: 10 },
+    { header: 'Name', key: 'name', width: 32 },
+    {
+        header: 'Age', key: 'age', style: { font: { name: 'Arial Black' } } }
+]
 
-
-worksheet.commit()
-
-table.getRow(1).font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+worksheet.getRow(1).font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
 
 array.forEach((row) => {
-    table.addRow(row);
+    worksheet.addRow(row);
 })
 
-table.addRows(array)
+worksheet.addRows(array)
 
 workbook.xlsx.writeFile('teste.xlsx').then(() => {
     console.log('Deu bom')
